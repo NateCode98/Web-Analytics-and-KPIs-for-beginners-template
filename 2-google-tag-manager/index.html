@@ -91,7 +91,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          <div class="row">
            <div class="col-md-4">
               <h2>Customer information</h2>
-              <form id="datalayer-form">
+              <form id="datalayer-form" onsubmit="dataLayer.push({'event': 'formsubmit', 'button': 'submit'});">
                  <p>userType: <input type="text" name="userType" placeholder="not set"></p>
                  <p>planType: <input type="text" name="planType" placeholder="not set"></p>
                  <p><input type="submit" name="submit" value="Push to dataLayer"></p>
