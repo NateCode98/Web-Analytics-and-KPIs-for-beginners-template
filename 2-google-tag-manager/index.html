@@ -89,20 +89,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="container">
          <!-- Example row of columns -->
          <div class="row">
-            <div class="col-md-4">
-               <h2>Heading 1</h2>
-               <p>
-                  Donec id elit non mi porta gravida at eget metus. Fusce
-                  dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                  nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-                  malesuada magna mollis euismod. Donec sed odio dui.
-               </p>
-               <p>
-                  <a class="btn btn-default" href="#" role="button"  onclick="dataLayer.push({'event': 'buttonClick', 'button': 'CTA1'});">
-                     CTA 1 &raquo;
-                  </a>
-               </p>
-            </div>
+           <div class="col-md-4">
+              <h2>Customer information</h2>
+              <form id="datalayer-form">
+                 <p>userType: <input type="text" name="userType" placeholder="not set"></p>
+                 <p>planType: <input type="text" name="planType" placeholder="not set"></p>
+                 <p><input type="submit" name="submit" value="Push to dataLayer"></p>
+              </form>
+           </div>
             <div class="col-md-4">
                <h2>Heading 2</h2>
                <p>
@@ -151,5 +145,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <script src="../js/vendor/bootstrap.min.js"></script>
 
       <script src="../js/main.js"></script>
+
+      <script>
+            function processForm(e) {
+               if (e.preventDefault) e.preventDefault();
+
+               const userType = e.target.elements.userType.value;
+               const planType = e.target.elements.planType.value;
+
+               dataLayer.push({
+                  event: "pushedUserinformation",
+                  userType: userType,
+                  userPlan: planType
+               });
+               console.log("Form information pushed to datalayer: userType: " + userType + ", planType: " + planType);
+
+               // You must return false to prevent the default form behavior
+               return false;
+            }
+
+            var form = document.getElementById('datalayer-form');
+            form.addEventListener("submit", processForm);
+
+         </script>
    </body>
 </html>
