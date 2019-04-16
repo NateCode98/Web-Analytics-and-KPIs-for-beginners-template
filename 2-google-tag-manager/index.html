@@ -92,8 +92,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            <div class="col-md-4">
               <h2>Customer information</h2>
               <form id="datalayer-form" onsubmit="dataLayer.push({'event': 'formsubmit', 'button': 'submit'});">
-                 <p>userType: <input type="text" name="userType" placeholder="not set"></p>
-                 <p>planType: <input type="text" name="planType" placeholder="not set"></p>
+                 <p>City: <input type="text" name="City" placeholder="not set"></p>
+                 <p>Age: <input type="text" name="Age" placeholder="not set"></p>
                  <p><input type="submit" name="submit" value="Push to dataLayer"></p>
               </form>
            </div>
@@ -150,15 +150,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             function processForm(e) {
                if (e.preventDefault) e.preventDefault();
 
-               const userType = e.target.elements.userType.value;
-               const planType = e.target.elements.planType.value;
-
+               const City = e.target.elements.City.value;
+               if (City == "" ) {
+                 City = "invalid"
+               }
+               const Age = e.target.elements.Age.value;
+               if (Age == "" ) {
+                 Age = "invalid"
+               }
                dataLayer.push({
                   event: "pushedUserinformation",
-                  userType: userType,
-                  userPlan: planType
+                  City: City,
+                  Age: Age
                });
-               console.log("Form information pushed to datalayer: userType: " + userType + ", planType: " + planType);
+               console.log("Form information pushed to datalayer: City: " + City + ", Age: " + Age);
 
                // You must return false to prevent the default form behavior
                return false;
